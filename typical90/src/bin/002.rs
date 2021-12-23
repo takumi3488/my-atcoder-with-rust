@@ -2,25 +2,25 @@ use proconio::{input};
 
 fn main() {
     input! {
-        n: isize
+        n: usize
     }
-    for tmp in 0..(1 << n) { // 上位ビットが文字列の左側に相当
+    for i in 0..(1 << n) {
         let mut cnt = 0;
-        let mut ok = true;
-        for i in (0..n).rev() { // 上位ビットから順に走査
-            if (tmp >> i) & 1 == 0 {
+        let mut is_ok = true;
+        for j in (0..n).rev() {
+            if (i>>j) & 1 == 0 {
                 cnt += 1;
             } else {
-                cnt -= 1;
-                ok &= cnt >= 0;
+                cnt -=1;
+                is_ok &= cnt >= 0;
             }
         }
-        ok &= cnt == 0;
-        if ok {
-            for i in (0..n).rev() { // 上位ビットから順に走査
-                print!("{}", if (tmp >> i) & 1 == 0 { '(' } else { ')' })
+        is_ok &= cnt == 0;
+        if is_ok {
+            for j in (0..n).rev() {
+                print!("{}", if (i >> j) & 1 == 0 { '(' } else { ')' })
             }
-            println!();
+            println!("")
         }
     }
 }

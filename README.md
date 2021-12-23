@@ -5,4 +5,11 @@
 - As of December 2021, I am not participating in any new contests due to my busy schedule.
 
 ## For me
+### Commands
+Clone new contest.
+```
+./new.sh
+```
+### Links
 - [cargo-atcoder](https://github.com/tanakh/cargo-atcoder)
+- [AtCoder 2020年言語アップデート以降の環境](https://github.com/rust-lang-ja/atcoder-rust-resources/wiki/2020-Update)

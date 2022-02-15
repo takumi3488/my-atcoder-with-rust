@@ -1,5 +1,5 @@
 struct UnionFind {
-    par: Vec<usize>,
+    par: Vec<isize>,
     siz: Vec<usize>,
 }
 
@@ -7,17 +7,17 @@ impl UnionFind {
     fn new(n: usize) -> Self {
         UnionFind {
             par: vec![-1; n], // 親を返す(いなければ-1を返す)
-            siz: vec![1; n], // 根がiのグループのサイズをsiz[i]に格納
+            siz: vec![1; n],  // 根がiのグループのサイズをsiz[i]に格納
         }
     }
 
     // 根を返す
     fn root(&mut self, x: usize) -> usize {
-        if self.par[x] ==-1 {
+        if self.par[x] == -1 {
             return x;
         }
-        self.par[x] = self.root(self.par[x]);
-        self.par[x]
+        self.par[x] = self.root(self.par[x] as usize) as isize;
+        self.par[x] as usize
     }
 
     // 同じ根を持つかを判別
@@ -38,7 +38,7 @@ impl UnionFind {
             std::mem::swap(&mut parent, &mut child);
         }
 
-        self.par[child] = parent;
+        self.par[child] = parent as isize;
         self.siz[parent] += self.siz[child];
         true
     }
@@ -52,8 +52,10 @@ impl UnionFind {
     // グループ数をカウント
     fn groups_count(&mut self) -> usize {
         let mut res = 0;
-        for p in self.par {
-            res += p==-1;
+        for p in &self.par {
+            if *p == -1 {
+                res += 1;
+            }
         }
         res
     }

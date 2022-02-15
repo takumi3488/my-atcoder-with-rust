@@ -37,6 +37,7 @@ def main():
                 with open(code_path, 'w') as f:
                     code = '''use proconio::input;
 
+#[proconio::fastout]
 ''' + code
                     f.write(code)
 

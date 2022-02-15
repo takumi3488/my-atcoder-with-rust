@@ -1,3 +1,8 @@
+struct UnionFind {
+    par: Vec<usize>,
+    siz: Vec<usize>,
+}
+
 impl UnionFind {
     fn new(n: usize) -> Self {
         UnionFind {

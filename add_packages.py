@@ -35,7 +35,7 @@ def main():
                 code = f.read()
             if not code.split("\n")[0].startswith("use"):
                 with open(code_path, 'w') as f:
-                    code = '''use proconio::{input,fastout};
+                    code = '''use proconio::input;
 
 ''' + code
                     f.write(code)

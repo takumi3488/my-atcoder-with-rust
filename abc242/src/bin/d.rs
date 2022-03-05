@@ -1,5 +1,12 @@
 use proconio::input;
 
 fn main() {
-    unimplemented!();
+    input! {
+        mut s: &str,
+        n: usize,
+        tk: [(usize,usize);n]
+    }
+    for q in tk {
+        
+    }
 }

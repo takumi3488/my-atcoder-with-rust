@@ -1,39 +1,36 @@
-use proconio::{input, marker::Usize1};
-use std::collections::VecDeque;
+use proconio::{input,marker::Usize1};
 
 fn main() {
-    input! {n:usize}
+    input! { n: usize }
     let mut g = vec![vec![]; n];
     for _ in 1..n {
-        input! {x:Usize1,y:Usize1}
-        g[x].push(y);
-        g[y].push(x);
+        input! {
+            a: Usize1,
+            b: Usize1
+        }
+        g[a].push(b);
+        g[b].push(a);
     }
-    let mut d = vec![1 << 30; n];
-    bfs(&g, &mut d, 0usize);
-    let mut u: usize = 0;
-    let m = d.iter().max().unwrap();
-    for i in 0..n {
-        if &d[i] == m {
-            u = i
+    let mut u = 0;
+    let mut dist = vec![0; n];
+    dfs(&g, &mut dist, &u, &std::usize::MAX, 0);
+    let max_dist = dist.iter().max().unwrap();
+    for v in 0..n {
+        if dist[v] == *max_dist {
+            u = v;
+            break;
         }
     }
-    let mut d = vec![1 << 30; n];
-    bfs(&g, &mut d, u);
-    println!("{}", 1 + d.iter().max().unwrap());
+    dfs(&g, &mut dist, &u, &std::usize::MAX, 0);
+    println!("{}", dist.iter().max().unwrap() + 1);
 }
 
-fn bfs(g: &Vec<Vec<usize>>, d: &mut Vec<isize>, s: usize) {
-    let mut q: VecDeque<usize> = VecDeque::new();
-    d[s] = 0;
-    q.push_back(s);
-    while q.len() > 0 {
-        let i = q.pop_front().unwrap();
-        for j in g[i].iter() {
-            if d[*j] == 1 << 30 {
-                q.push_back(*j);
-                d[*j] = d[i] + 1;
-            }
+fn dfs(g: &Vec<Vec<usize>>, dist: &mut Vec<usize>, u: &usize, p: &usize, d: usize) {
+    dist[*u] = d;
+    for v in g[*u].iter() {
+        if v == p {
+            continue;
         }
+        dfs(g, dist, v, u, d + 1);
     }
 }

@@ -1,6 +1,7 @@
 use std::collections::VecDeque;
 
-fn bfs(g: &Vec<Vec<usize>>, d: &mut Vec<isize>, s: usize) {
+// グラフgの頂点sからの各頂点の距離をdに詰める
+fn bfs(g: &Vec<Vec<usize>>, d: &mut Vec<usize>, s: usize) {
     let mut q: VecDeque<usize> = VecDeque::new();
     d[s] = 0;
     q.push_back(s);

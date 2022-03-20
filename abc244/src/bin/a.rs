@@ -1,5 +1,9 @@
-use proconio::input;
+use proconio::{input, marker::Chars};
 
 fn main() {
-    unimplemented!();
+    input! {
+        _n: usize,
+        s: Chars
+    }
+    println!("{}", s.last().unwrap());
 }

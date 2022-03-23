@@ -8,20 +8,6 @@
 
 ## For me
 
-### Commands
-
-Clone new contest.
-
-```sh
-./new.sh
-```
-
-Run the test and submit if all tests are passed.
-
-```sh
-cargo atcoder submit <problem-id>
-```
-
 ### Links
 
 - [cargo-atcoder](https://github.com/tanakh/cargo-atcoder)

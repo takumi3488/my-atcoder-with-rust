@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/bin/zsh
 
-read -p "Project id: " id && \
+read "id?Project id: " && \
 cargo atcoder new $id && \
 python3 add_packages.py $id

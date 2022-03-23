@@ -1,22 +1,11 @@
 import toml
-import csv
 from sys import argv
 from glob import glob
 
 
 def main():
-    with open('crates.csv') as f:
-        reader = csv.DictReader(f)
-        packages = {}
-        for row in reader:
-            packages |= {row["name"]: row["version"]}
-
     with open('.cargo/config.toml') as f:
-        data = toml.load(f)
-
-    with open('.cargo/config.toml', 'w') as f:
-        data['package'] = packages
-        toml.dump(data, f)
+        package = toml.load(f)['package']
 
     if len(argv) == 2:
         project_id = argv[1]
@@ -27,7 +16,7 @@ def main():
             data = toml.load(f)
 
         with open(cargo_toml_path, 'w') as f:
-            data['dependencies'] = packages
+            data['dependencies'] = package
             toml.dump(data, f)
 
         for code_path in code_paths:
@@ -35,8 +24,9 @@ def main():
                 code = f.read()
             if not code.split("\n")[0].startswith("use"):
                 with open(code_path, 'w') as f:
-                    code = '''use proconio::input;
+                    code = '''use proconio::{input,fastout};
 
+#[fastout]
 ''' + code
                     f.write(code)
 

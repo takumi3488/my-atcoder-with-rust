@@ -9,9 +9,11 @@ fn main() {
     }
     a.sort_unstable();
     b.sort_unstable();
-    let mut res = 0;
-    for i in 0..n {
-        res += (a[i] - b[i]).abs();
-    }
-    println!("{}", res);
+    println!(
+        "{}",
+        a.iter()
+            .zip(b.iter())
+            .map(|x| (x.0 - x.1).abs())
+            .sum::<i64>()
+    );
 }

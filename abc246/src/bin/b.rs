@@ -1,6 +1,11 @@
-use proconio::{input,fastout};
+use proconio::{fastout, input};
 
 #[fastout]
 fn main() {
-    unimplemented!();
+    input! {
+        x: f64,
+        y: f64
+    }
+    let r = (x * x + y * y).sqrt();
+    println!("{} {}", x / r, y / r);
 }

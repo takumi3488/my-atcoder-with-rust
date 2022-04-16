@@ -1,6 +1,12 @@
-use proconio::{input,fastout};
+use num::Float;
+use proconio::{fastout, input};
 
 #[fastout]
 fn main() {
-    unimplemented!();
+    input! {
+        a: f64,
+        b: f64,
+        k: f64
+    }
+    println!("{}", ((Float::log2(b)-Float::log2(a))/Float::log2(k)).ceil() as usize)
 }

@@ -1,6 +1,11 @@
-use proconio::{input,fastout};
+use proconio::{fastout, input, marker::Chars};
 
 #[fastout]
 fn main() {
-    unimplemented!();
+    input! {
+        mut s: Chars
+    }
+    s.sort_unstable();
+    let res: String = s.iter().collect();
+    println!("{}", res);
 }

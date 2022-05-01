@@ -1,6 +1,16 @@
-use proconio::{input,fastout};
+use proconio::{fastout, input};
 
 #[fastout]
 fn main() {
-    unimplemented!();
+    input! {
+        h: usize,
+        w: usize,
+        a: [[usize; w]; h]
+    }
+    for i in 0..w {
+        for j in 0..h {
+            print!("{} ", a[j][i]);
+        }
+        println!();
+    }
 }

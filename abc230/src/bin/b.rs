@@ -1,6 +1,9 @@
-use proconio::{input,fastout};
+use proconio::{input,fastout, marker::Chars};
 
 #[fastout]
 fn main() {
-    unimplemented!();
+    input! {
+        s: Chars
+    }
+    let mut t = 
 }

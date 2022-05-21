@@ -1,6 +1,4 @@
-use std::collections::HashMap;
-use proconio::{input,fastout};
-use itertools::Itertools;
+use proconio::{fastout, input};
 
 #[fastout]
 fn main() {
@@ -8,21 +6,16 @@ fn main() {
         n: usize,
         a: [usize; n]
     }
-    let mut hm = HashMap::new();
-    for a in a {
-        *hm.entry(a).or_insert(0) += 1;
+    let mut v = vec![0; 200_002];
+    for &a in &a {
+        v[a + 1] += 1;
     }
-    let mut values = vec![];
-    for (_,v) in hm {
-        values.push(v);
-    }
-    if values.len() < 3 {
-        println!("0");
-        return
+    for i in 1..200_002 {
+        v[i] += v[i - 1];
     }
     let mut res = 0;
-    for x in values.iter().combinations(3) {
-        res += x[0]*x[1]*x[2];
+    for i in 0..n {
+        res += v[a[i]] * (n - v[a[i] + 1]);
     }
     println!("{}", res);
 }
